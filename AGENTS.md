@@ -2,7 +2,7 @@
 
 ## Project Structure
 
-This repository contains the Portuguese design contract in `arquitetura-final-trading.md` and a Go test harness. Keep suites separated under `tests/development`, `tests/preview`, and `tests/production`; shared test helpers belong in `tests/internal/contract`. This is currently a test-only repository: do not add trading-system implementation as part of this work.
+This repository contains the Portuguese design contract in `arquitetura-final-trading.md` and a Go test harness. Keep suites separated under `tests/development`, `tests/preview`, and `tests/production`; shared test helpers belong in `tests/internal/contract`.
 
 ## Build and Test
 
@@ -14,7 +14,7 @@ Format Go files with `gofmt`. Use descriptive test names beginning with `Test`, 
 
 ## Safety and Phase Gates
 
-Preserve fail-closed behavior, deterministic order decisions, broker-position reconciliation after disconnects, idempotent orders, and the independent Position Guardian and human kill switch. Keep LLM analysis outside the order path. Do not advance phases until their documented gates pass, including Phase 0 sandbox checks and Phase 1's 200 demo signals with positive expectancy after costs. A failed check requires a correction followed by a fresh test run; do not hide failures with automatic retries.
+Preserve fail-closed behavior, deterministic order decisions, broker-position reconciliation after disconnects, idempotent orders, and the independent Position Guardian and human kill switch. Keep LLM analysis outside the order path. Do not advance phases until their documented gates pass, including Phase 0 sandbox checks and Phase 1's 200 demo signals with positive expectancy after costs. Whenever a use case or test fails, correct the underlying error or bug and rerun the affected tests. Repeat this cycle until every test suite passes; do not skip, mask, or accept a failing test.
 
 ## Commits and Pull Requests
 
